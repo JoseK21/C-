@@ -28,5 +28,6 @@ class Observer{
      */
     static void writeLines(string lines,int nL){
        cout<<"Line "<<(nL+1)<<": "<<lines<<endl;
+       //falta enviarlo a la intefaz
 
 }
