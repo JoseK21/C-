@@ -58,8 +58,11 @@ void Interface::on_Run_clicked()
 
         string out1 = writeLines(lines[currentIndex].toStdString(),currentIndex); //Uso de Observer
 
-        cout<<out1<<"\n________________________________"<<endl;
+        cout<<"Salida: "<<out1<<endl;
+
+        //Enviar al servidor___________________ out1
         currentIndex++;
+
     }
 }
 
