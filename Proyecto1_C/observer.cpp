@@ -1,6 +1,7 @@
 #include "string"
 #include "iostream"
 #include <QTextStream>
+#include <regex>
 
 using namespace std;
 
@@ -27,8 +28,19 @@ class Observer{
      * @param nL Numero actual de linea analizada
      */
     static void writeLines(string lines,int nL){
-
        cout<<"Line "<<(nL+1)<<": "<<lines<<endl;
+
+       string input = lines;
+       regex integer("(\\+|-)?[[:digit:]]+");
+
+       if(regex_match(input,integer))
+            cout<<"integer"<<endl;
+       else{
+            cout<<"Invalid input"<<endl;
+        }
+
+
+
        //falta enviarlo a la intefaz
 
 }
