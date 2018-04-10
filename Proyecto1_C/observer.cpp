@@ -27,6 +27,7 @@ class Observer{
      * @param nL Numero actual de linea analizada
      */
     static void writeLines(string lines,int nL){
+
        cout<<"Line "<<(nL+1)<<": "<<lines<<endl;
        //falta enviarlo a la intefaz
 

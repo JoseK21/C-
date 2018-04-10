@@ -14,7 +14,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         interface.cpp \
-    observer.cpp
+    observer.cpp \
+    listasimple.cpp \
+    nodos.cpp
 
 HEADERS  += interface.h
 

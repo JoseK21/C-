@@ -55,6 +55,7 @@ void Interface::on_Run_clicked()
     cout<<"Size Lines :"<<sizeLines<<endl;
 
     while(currentIndex < sizeLines){
+
         writeLines(lines[currentIndex].toStdString(),currentIndex); //Uso de Observer
         currentIndex++;
     }
