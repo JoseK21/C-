@@ -8,8 +8,8 @@
 #include <QFile>
 #include <QTextStream>
 
-
 using namespace std;
+ListaSimple *ls = new ListaSimple();
 
 QString fname; /**< TODO: describe */
 string nameF; /**< TODO: describe */
@@ -56,7 +56,9 @@ void Interface::on_Run_clicked()
 
     while(currentIndex < sizeLines){
 
-        writeLines(lines[currentIndex].toStdString(),currentIndex); //Uso de Observer
+        string out1 = writeLines(lines[currentIndex].toStdString(),currentIndex); //Uso de Observer
+
+        cout<<out1<<"\n________________________________"<<endl;
         currentIndex++;
     }
 }

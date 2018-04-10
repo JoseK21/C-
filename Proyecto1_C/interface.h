@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include "observer.cpp"
+#include "listasimple.cpp"
+
+
 
 namespace Ui {
 class Interface;

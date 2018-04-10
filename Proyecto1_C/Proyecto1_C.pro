@@ -13,7 +13,7 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        interface.cpp \
+    interface.cpp \
     observer.cpp \
     listasimple.cpp \
     nodos.cpp

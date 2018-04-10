@@ -900,7 +900,7 @@
     </attribute>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>Memory Address</string>
      </property>
     </column>
     <column>
@@ -910,7 +910,7 @@
     </column>
     <column>
      <property name="text">
-      <string>New Column</string>
+      <string>Tag</string>
      </property>
     </column>
     <column>

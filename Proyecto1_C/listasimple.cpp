@@ -1,12 +1,3 @@
-/**
-  * @file listasimple.cpp
-  * @version 1.0
-  * @date 10/03/2018
-  * @author José Núñez
-  * @title Tarea Extraclase #1
-  * @brief Lista simple
-  */
-
 #include "nodos.cpp"
 #include <string>
 

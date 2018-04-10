@@ -11,13 +11,16 @@ using namespace std;
  */
 class Observer{
     public:
+
         /**
          * @brief Lector de codigo
          *
          * @param string Linea leida
          * @param int Numero de linea leida
          */
-        static void writeLines(string,int);
+        static string writeLines(string,int);
+        static string integerC(string);
+
 };
 
 
@@ -27,20 +30,40 @@ class Observer{
      * @param lines Linea a analizar
      * @param nL Numero actual de linea analizada
      */
-    static void writeLines(string lines,int nL){
+    static string writeLines(string lines,int nL){
        cout<<"Line "<<(nL+1)<<": "<<lines<<endl;
-
        string input = lines;
-       regex integer("(\\+|-)?[[:digit:]]+");
 
-       if(regex_match(input,integer))
-            cout<<"integer"<<endl;
+
+       smatch m;
+       regex e("int [A-z] = [0-9];");
+
+       bool found = regex_search(input, m,e);
+
+       if (found==true){
+           cout<<"Encontrado :) "<<endl;
+       }
        else{
-            cout<<"Invalid input"<<endl;
-        }
+            cout<<"No encontrado :("<<endl;
+       }
 
+       /*__________________________________________ funciona muy bien para veririfacar que el valorer del integer sea un numero
+       regex integer("(\\+|-)?[[:digit:]]+");
+       if(regex_match(input,integer)){
+            cout<<"integer"<<endl;
+            return ">> integer";
+       }else{
+            cout<<"Invalid input"<<endl;
+            return ">> Invalid input";
+       }
+
+        */
 
 
        //falta enviarlo a la intefaz
 
 }
+    static string integerC(string){
+
+    }
+
