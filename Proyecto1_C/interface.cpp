@@ -50,20 +50,20 @@ void Interface::on_Run_clicked()
     QString plainTextEditContents = ui->ptd_CodeEdit->toPlainText();
     QStringList lines = plainTextEditContents.split("\n");
 
-    int currentIndex=0;
     int sizeLines = lines.length();
     cout<<"Size Lines :"<<sizeLines<<endl;
 
-    while(currentIndex < sizeLines){
-
-        string out1 = writeLines(lines[currentIndex].toStdString(),currentIndex); //Uso de Observer
+    for(int ind =0;ind<sizeLines;ind++){
+        //cout<<"---------> Datos enviados :"<<lines[ind].toStdString()<<endl;
+        string out1 = writeLines(lines[ind].toStdString(),ind); //Uso de Observer
 
         cout<<"Salida: "<<out1<<endl;
 
         //Enviar al servidor___________________ out1
-        currentIndex++;
+
 
     }
+    cout<<"^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^\n\n"<<endl;
 }
 
 /**
