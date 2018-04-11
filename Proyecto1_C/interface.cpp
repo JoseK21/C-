@@ -8,7 +8,7 @@
 #include <QTextStream>
 
 
-
+QFile file_jSon("/home/josek/Escritorio/C-/Proyecto1_C/array.json");
 using namespace std;
 
 ListaSimple *ls = new ListaSimple();

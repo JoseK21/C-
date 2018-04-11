@@ -56,7 +56,6 @@ class Observer{
                QJsonDocument jsonDoc(jsonArray);
 
                qDebug()<< jsonDoc.array()<<endl;
-              // cout<<  <<endl;
                QFile file1("/home/josek/Escritorio/C-/array");
                Q_ASSERT(file1.open(QFile::WriteOnly));
                file1.write(jsonDoc.toJson());
@@ -75,9 +74,7 @@ class Observer{
                    }
                    cout<<"COUT: "<<R<<endl;
                    return R;
-
                 }
-
                 //Otro patron
                cout<<"No encontrado :("<<endl;
                return R;

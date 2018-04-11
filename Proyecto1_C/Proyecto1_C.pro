@@ -25,4 +25,6 @@ FORMS    += interface.ui
 RESOURCES += \
     pics.qrc
 
+DISTFILES +=
+
 
