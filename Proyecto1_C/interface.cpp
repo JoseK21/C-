@@ -56,8 +56,13 @@ void Interface::on_Run_clicked()
 
     for(int ind =0;ind<sizeLines;ind++){
 
-        string out1 = writeLines(lines[ind].toStdString(),ind); //Uso de Observer
+        QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Uso de Observer
 
+        qDebug()<<": "<< out1.value(F_TYPE).toString()<<endl;
+
+
+
+        /*
         if(out1.substr(0,out1.find(" ")) == "p:"){
             string xP = out1.substr(out1.find(" "),out1.length());
             char *a = new char[xP.length() + 1];
@@ -66,6 +71,7 @@ void Interface::on_Run_clicked()
             delete(a);
 
         }
+
         if(out1.substr(0,out1.find(" ")) == "e:"){
 
 
@@ -79,7 +85,7 @@ void Interface::on_Run_clicked()
             break;//Finaliza la ejecucion
 
         }
-
+*/
         cout<<"TIMER"<<endl;
     }
     cout<<"^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^\n\n"<<endl;

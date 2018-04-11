@@ -9,6 +9,10 @@
 #include <QDebug>
 #include "QThread"
 
+#define F_EVENT "event"
+#define F_TYPE "type"
+#define F_NAME "name"
+#define F_VALUE "value"
 
 using namespace std;
 
@@ -34,11 +38,11 @@ class Observer{
      * @param lines Linea a analizar
      * @param nL Numero actual de linea analizada
      */
-    static string writeLines(string line,int nL){
+    static QJsonObject writeLines(string line,int nL){
         string x1 = line.substr(0,line.find(" "));
         smatch m;
         string R;
-        QJsonObject json{};
+        QJsonObject json{{F_EVENT,""},{F_TYPE,""},{F_NAME,""},{F_VALUE,""},};
         if (x1 =="int" || x1 =="long" || x1 =="char" || x1 =="float" || x1 =="double"){     //CAso de encontrar una Variable
 
             regex patronV_1("([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");                    //Patron: int x;
@@ -48,20 +52,24 @@ class Observer{
                //QString data = to_string(x1); // assume this holds the json string
 
                string name=m[3].str();
-               json.insert("Type",x1.c_str());
-               json.insert("Name",name.c_str());
-               json.insert("Value","null");
+               string eve="correct";
+
+               json.insert(F_EVENT,eve.c_str());
+               json.insert(F_TYPE,x1.c_str());
+               json.insert(F_NAME,name.c_str());
+               json.insert(F_VALUE,"null");
 
                QJsonArray jsonArray {json};
                QJsonDocument jsonDoc(jsonArray);
 
                qDebug()<< jsonDoc.array()<<endl;
-              // cout<<  <<endl;
                QFile file1("/home/josek/Escritorio/C-/array");
                Q_ASSERT(file1.open(QFile::WriteOnly));
                file1.write(jsonDoc.toJson());
 
-               return R;
+               qDebug()<<": "<< json.value(F_TYPE).toString()<<endl;
+
+               return json;
             }
             else{
                 regex patronV_2("([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");
@@ -74,16 +82,14 @@ class Observer{
                        R= R+m[n].str()+" ";
                    }
                    cout<<"COUT: "<<R<<endl;
-                   return R;
-
+                   return json;
                 }
-
                 //Otro patron
                cout<<"No encontrado :("<<endl;
-               return R;
+               return json;
             }
 
-            return "variable___SII";
+            return json;
         }
         else{
             regex patronV_P("cout<<\"([[:print:]]*)([[:s:]]*\");");     //regex patronV_P("cout<<([[:w:]]*)([[:s:]]*);"); -> para variables
@@ -95,7 +101,7 @@ class Observer{
                cout<<m[1].str()<<endl;
                R= "p: "+m[1].str();
                cout<<"COUT: "<<R<<endl;
-               return R;
+               return json;
 
             }
 
@@ -106,22 +112,14 @@ class Observer{
             if(foundP4==true){//Error de ;
                R= "e: "+to_string(nL+1);      //Error
                cout<<"COUT: "<<R<<endl;
-               return R;
+               return json;
 
                 }
             }
 
             //Otro patron
            cout<<"----> No encontrado :("<<endl;
-           return R;
-
-            //Aqui buscar los printf();
-            return "hola_:Nada";
-
-
-
-
-
+           return json;
 
         /*
 
