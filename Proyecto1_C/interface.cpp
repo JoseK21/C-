@@ -1,14 +1,16 @@
 #include "interface.h"
 #include "ui_interface.h"
-#include "QTimer"
 #include "string"
-#include "iostream"
+#include <iostream>     //Cambios <>
 #include <QFileDialog>
 #include <fstream>
 #include <QFile>
 #include <QTextStream>
 
+
+
 using namespace std;
+
 ListaSimple *ls = new ListaSimple();
 
 QString fname; /**< TODO: describe */
@@ -46,7 +48,6 @@ Interface::~Interface()
  */
 void Interface::on_Run_clicked()
 {
-
     QString plainTextEditContents = ui->ptd_CodeEdit->toPlainText();
     QStringList lines = plainTextEditContents.split("\n");
 
@@ -54,14 +55,32 @@ void Interface::on_Run_clicked()
     cout<<"Size Lines :"<<sizeLines<<endl;
 
     for(int ind =0;ind<sizeLines;ind++){
-        //cout<<"---------> Datos enviados :"<<lines[ind].toStdString()<<endl;
+
         string out1 = writeLines(lines[ind].toStdString(),ind); //Uso de Observer
 
-        cout<<"Salida: "<<out1<<endl;
+        if(out1.substr(0,out1.find(" ")) == "p:"){
+            string xP = out1.substr(out1.find(" "),out1.length());
+            char *a = new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_Stdout->append(a);
+            delete(a);
 
-        //Enviar al servidor___________________ out1
+        }
+        if(out1.substr(0,out1.find(" ")) == "e:"){
 
 
+            string xP = "Error de ; en la linea :"+out1.substr(out1.find(" "),out1.length());
+            char *a = new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+
+            ui->ptd_ApplicationLog->append(a);
+
+            delete(a);
+            break;//Finaliza la ejecucion
+
+        }
+
+        cout<<"TIMER"<<endl;
     }
     cout<<"^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^\n\n"<<endl;
 }

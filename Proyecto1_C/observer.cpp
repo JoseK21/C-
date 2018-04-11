@@ -3,6 +3,8 @@
 #include <QTextStream>
 #include <regex>
 
+#include "QThread"
+
 using namespace std;
 
 /**
@@ -28,41 +30,81 @@ class Observer{
      * @param nL Numero actual de linea analizada
      */
     static string writeLines(string line,int nL){
+
         string x1 = line.substr(0,line.find(" "));
-        cout<<"x1: "<<x1<<endl;
-        if (x1 =="int" || x1 =="long" || x1 =="char" || x1 =="float" || x1 =="double"){  //int long char float double
+        cout<<"Text: "<<x1<<endl;
+        smatch m;
+        string R;
+        if (x1 =="int" || x1 =="long" || x1 =="char" || x1 =="float" || x1 =="double"){
 
-            smatch m;
-            regex patronVariable("([[:w:]]+)[[:s:]]*([[:w:]])+\;");
-            string R;
+            regex patronV_1("([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");
+            bool found1 = regex_match(line,m,patronV_1);
 
-            bool found = regex_match(line,m,patronVariable);
-
-            if (found==true){
-               for(int n=0; n<m.size();n++){
-                   cout<<R<<endl;
-                   R= R+m[n+1].str()+" ";
+            if (found1==true){
+               cout<<"\nAsignacion de variable sin valor"<<endl;
+               for(int n=1; n<m.size();n++){
+                   cout<<m[n]<<endl;
+                   R= R+m[n].str()+"";
                }
                cout<<"COUT: "<<R<<endl;
                return R;
 
             }
             else{
+                regex patronV_2("([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");
+                bool found2 = regex_match(line,m,patronV_2);
+
+                if (found2==true){
+                   cout<<"\nAsignacion de variable con valor"<<endl;
+                   for(int n=1; n<m.size();n++){
+                       cout<<m[n]<<endl;
+                       R= R+m[n].str()+" ";
+                   }
+                   cout<<"COUT: "<<R<<endl;
+                   return R;
+
+                }
+
                 //Otro patron
                cout<<"No encontrado :("<<endl;
                return R;
             }
 
-
-
-
-            cout<<"VAriable............!!..........1!"<<endl;
             return "variable___SII";
         }
         else{
+            regex patronV_P("cout<<\"([[:print:]]*)([[:s:]]*\");");     //regex patronV_P("cout<<([[:w:]]*)([[:s:]]*);"); -> para variables
+            bool foundP3 = regex_match(line,m,patronV_P);
+
+            cout<<"printf(.........);"<<endl;
+            if (foundP3==true){
+
+               cout<<m[1].str()<<endl;
+               R= "p: "+m[1].str();
+               cout<<"COUT: "<<R<<endl;
+               return R;
+
+            }
+
+            regex patronV_P1("cout<<\"([[:print:]]*)([[:s:]]*\")");
+            bool foundP4= regex_match(line,m,patronV_P1);
+            cout<<"printf(....ERRORPunto_coma.....)"<<endl;
+
+            if(foundP4==true){//Error de ;
+                   R= "e: "+to_string(nL);      //Error
+                   cout<<"COUT: "<<R<<endl;
+                   return R;
+
+                }
+            }
+
+            //Otro patron
+           cout<<"----> No encontrado :("<<endl;
+           return R;
+
             //Aqui buscar los printf();
             return "hola_:Nada";
-        }
+
 
 
 

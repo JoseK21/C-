@@ -939,25 +939,6 @@
      <string>RAM Live View</string>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="ptd_Stdout">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>460</y>
-      <width>821</width>
-      <height>101</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>StdOut</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-    <property name="placeholderText">
-     <string>&gt;</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
@@ -1891,22 +1872,6 @@
      </size>
     </property>
    </widget>
-   <widget class="QPlainTextEdit" name="ptd_ApplicationLog">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>590</y>
-      <width>821</width>
-      <height>111</height>
-     </rect>
-    </property>
-    <property name="toolTip">
-     <string>Application Log</string>
-    </property>
-    <property name="readOnly">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="ptd_CodeEdit">
     <property name="geometry">
      <rect>
@@ -1951,6 +1916,38 @@
     </property>
     <property name="text">
      <string>Versión 1.1</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="ptd_Stdout">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>449</y>
+      <width>821</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>StdOut</string>
+    </property>
+    <property name="placeholderText">
+     <string>&gt;</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="ptd_ApplicationLog">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>590</y>
+      <width>821</width>
+      <height>111</height>
+     </rect>
+    </property>
+    <property name="toolTip">
+     <string>Application Log</string>
+    </property>
+    <property name="placeholderText">
+     <string>:</string>
     </property>
    </widget>
   </widget>
