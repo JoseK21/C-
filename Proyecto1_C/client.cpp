@@ -169,19 +169,11 @@ void Client::readFortune()
     statusLabel->setText(currentFortune);
     getServerButton->setEnabled(true);
 
-    std::cout<<nextFortune.toStdString()<<std::endl;
-    std::cout<<"Reservé 10MB"<<std::endl;
-
     if(nextFortune.toStdString() == "Reservé 10MB"){
         this->close();
         Interface *i_f = new Interface;
-        //i_f->show();
-        //i_f->setModal(true);
         i_f->show();
-
-        // talves el .exe
     }
-
 }
 //! [8]
 

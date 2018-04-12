@@ -50,7 +50,7 @@ Interface::~Interface()
  */
 void Interface::on_Run_clicked()
 {
-    ui->Run->setEnabled(0);
+    //ui->Run->setEnabled(0);
     xP = "Starting Compilation....";
     a = new char[xP.length() + 1];
     strcpy(a,xP.c_str());
@@ -62,7 +62,7 @@ void Interface::on_Run_clicked()
 
     int sizeLines = lines.length();
 
-    for(ind;ind<sizeLines;ind++){
+    for(int ind;ind<sizeLines;ind++){
 
         xP = to_string(ind+1);
         a = new char[xP.length() + 1];
@@ -78,11 +78,22 @@ void Interface::on_Run_clicked()
                 //Nada solo es para visualizar el salto de linea
             }
             else if (out1.value(F_EVENT).toString() == "json->Server"){
+
+                // enviarlo
                 xP = "Sending-data-to-the-server...";
                 a = new char[xP.length() + 1];
                 strcpy(a,xP.c_str());
                 ui->ptd_ApplicationLog->append(a);
                 delete(a);
+
+                //---- prueba de tabla
+                int fila = ui->tableWidget->rowCount();
+                ui->tableWidget->insertRow(ui->tableWidget->rowCount());
+                QString p = out1.value(F_EVENT).toString();
+                ui->tableWidget->setItem(fila,0,new QTableWidgetItem(p));
+
+                //-----
+
             }
             else if (out1.value(F_EVENT).toString() == "syntax error"){
                 xP = "\t\t_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();

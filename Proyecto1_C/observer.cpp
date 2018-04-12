@@ -62,6 +62,10 @@ class Observer{
         regex patronV_1("([[:s:]]*)([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");              //int a; long b; char c; float d; double e;
         bool foundV_1 = regex_match(line,m1,patronV_1);
 
+        smatch mInt;                                                                //Asignacion de variable SIN valor"
+        regex patronInt("([[:s:]]*)([[:w:]]+)([[:s:]]+)([[:print:]]+)[[:s:]]*\;");              //int a; long b; char c; float d; double e;
+        bool foundV_Int = regex_match(line,mInt,patronInt);
+
         smatch m2;                                                                //Asignacion de variable CON valor"
         regex patronV_2("([[:s:]]*)([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");   //int a = 4;
         bool foundV_2 = regex_match(line,m2,patronV_2);
@@ -90,14 +94,18 @@ class Observer{
             json.insert(F_EVENT,eve.c_str());
         }
         else if (foundV_1){
-           string name=m1[4].str();
+
+
            string type=m1[2].str();
+           string name=m1[4].str();
            string eve="json->Server";
 
            json.insert(F_EVENT,eve.c_str());
            json.insert(F_TYPE,type.c_str());
            json.insert(F_NAME,name.c_str());
            json.insert(F_VALUE,"");
+
+           //json.value(F_TYPE).toString();
 
         }
         else if (foundV_2){
@@ -131,6 +139,8 @@ class Observer{
            json.insert(F_NAME,seccion.c_str());
            json.insert(F_VALUE,nuLine.c_str());
 
+
+
        }
        else{
            string eve="syntax error";
@@ -151,6 +161,8 @@ class Observer{
 
 
       /*____funciona muy bien para veririfacar que el valorer del integer sea un numero
+       *
+       *
        regex integer("(\\+|-)?[[:digit:]]+");
        if(regex_match(input,integer)){
             cout<<"integer"<<endl;
@@ -159,4 +171,7 @@ class Observer{
             cout<<"Invalid input"<<endl;
             return ">> Invalid input";
        }
+
+
+
        */
