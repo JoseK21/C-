@@ -7,16 +7,18 @@
 #include <QFile>
 #include <QTextStream>
 
-
 QFile file_jSon("/home/josek/Escritorio/C-/Proyecto1_C/array.json");
 using namespace std;
 
-ListaSimple *ls = new ListaSimple();
-
+//ListaSimple *ls = new ListaSimple();
 QString fname; /**< TODO: describe */
 string nameF; /**< TODO: describe */
 string stdOut; /**< TODO: describe */
-
+bool stop=false;
+string xP;
+char *a;
+int ind =0; // indice de linea analizada
+QStringList lines;
 
 /**
  * @brief Inicio de ventana
@@ -48,47 +50,94 @@ Interface::~Interface()
  */
 void Interface::on_Run_clicked()
 {
+    ui->GoOn->setEnabled(1);
+    ui->Stop->setEnabled(1);
+    xP = "Starting Compilation....";
+    a = new char[xP.length() + 1];
+    strcpy(a,xP.c_str());
+    ui->ptd_ApplicationLog->append(a);
+
+    ind=0;
+    if (stop == true){
+        stop=false;
+    }
+
     QString plainTextEditContents = ui->ptd_CodeEdit->toPlainText();
-    QStringList lines = plainTextEditContents.split("\n");
+    lines = plainTextEditContents.split("\n");
 
     int sizeLines = lines.length();
     cout<<"Size Lines :"<<sizeLines<<endl;
 
-    for(int ind =0;ind<sizeLines;ind++){
-
-        QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Uso de Observer
-
-        qDebug()<<": "<< out1.value(F_TYPE).toString()<<endl;
+    for(ind;ind<sizeLines;ind++){
 
 
+        xP = to_string(ind+1);
+        a = new char[xP.length() + 1];
+        strcpy(a,xP.c_str());
+        ui->label_Analyzed_Line->setText(a);
+        delete(a);
 
-        /*
-        if(out1.substr(0,out1.find(" ")) == "p:"){
-            string xP = out1.substr(out1.find(" "),out1.length());
-            char *a = new char[xP.length() + 1];
+        if(stop==true){
+            xP = "Stop....";
+            a= new char[xP.length() + 1];
             strcpy(a,xP.c_str());
-            ui->ptd_Stdout->append(a);
+            ui->ptd_ApplicationLog->append(a);
             delete(a);
 
+            break;
         }
 
-        if(out1.substr(0,out1.find(" ")) == "e:"){
+        //TIMER
+        QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Observer
 
-
-            string xP = "Error de ; en la linea :"+out1.substr(out1.find(" "),out1.length());
-            char *a = new char[xP.length() + 1];
+        if (out1.value(F_EVENT).toString() == "Line_break"){
+            cout<<"Line_break"<<endl;
+        }
+        else if (out1.value(F_EVENT).toString() == "json->Server"){
+            xP = "Sending-data-to-the-server...";
+            a = new char[xP.length() + 1];
             strcpy(a,xP.c_str());
-
             ui->ptd_ApplicationLog->append(a);
-
+            delete(a);
+        }
+        else if (out1.value(F_EVENT).toString() == "syntax error"){
+            xP = "_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
+            a = new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_ApplicationLog->append(a);
             delete(a);
             break;//Finaliza la ejecucion
-
         }
-*/
-        cout<<"TIMER"<<endl;
+        else if (out1.value(F_EVENT).toString() == "Interface"){
+            if (out1.value(F_NAME).toString()=="Stdout"){
+                xP = out1.value(F_VALUE).toString().toStdString();
+                a = new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_Stdout->append(a);
+                delete(a);
+            }else if(out1.value(F_NAME).toString()=="ApplicationLog"){
+                xP = "Error>> Line # "+out1.value(F_VALUE).toString().toStdString();
+                a = new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_ApplicationLog->append(a);
+
+                delete(a);
+                break;//Finaliza la ejecucion
+            }
+        }
+        else{
+            xP = "Patron sin analisis....!! Line( "+to_string(ind)+" ).";
+            a = new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_ApplicationLog->append(a);
+            delete(a);
+        }
     }
-    cout<<"^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^_^\n\n"<<endl;
+    xP = "\n>>> Finished Execution.\n\n";
+    a = new char[xP.length() + 1];
+    strcpy(a,xP.c_str());
+    ui->ptd_ApplicationLog->append(a);
+    delete(a);
 }
 
 /**
@@ -106,7 +155,7 @@ void Interface::on_ButtonClear_clicked()
  */
 void Interface::on_NewFile_triggered()
 {
-    // Borrar todo (Punteros y demas)...
+    ui->label_Analyzed_Line->setText("");
     ui->ptd_ApplicationLog->clear();
     ui->ptd_CodeEdit->clear();
     ui->ptd_Stdout->clear();
@@ -130,6 +179,104 @@ void Interface::on_Open_File_triggered()
     QTextStream textStream(&file);
     QString line = textStream.readAll();
 
+
+    xP = "Open file address:  "+fname.toStdString();
+    a= new char[xP.length() + 1];
+    strcpy(a,xP.c_str());
+
+    ui->ptd_ApplicationLog->append(a);
     ui->ptd_CodeEdit->setText(line);
+    delete(a);
     file.close();
 }
+
+void Interface::on_Stop_clicked()
+{
+    stop=true;
+    xP = "Pause<< Stopped processes";
+    a = new char[xP.length() + 1];
+    strcpy(a,xP.c_str());
+    ui->ptd_ApplicationLog->append(a);
+    delete(a);
+
+    ui->Stop->setEnabled(0);
+
+}
+
+void Interface::on_GoOn_clicked()
+{
+    xP = "Line_Break.. ";
+    a= new char[xP.length() + 1];
+    strcpy(a,xP.c_str());
+    ui->ptd_ApplicationLog->append(a);
+    delete(a);
+
+    QString plainTextEditContents = ui->ptd_CodeEdit->toPlainText();
+    lines = plainTextEditContents.split("\n");
+
+    if (ind < lines.length()){
+
+        xP = to_string(ind+1);
+        a= new char[xP.length() + 1];
+        strcpy(a,xP.c_str());
+        ui->label_Analyzed_Line->setText(a);
+        delete(a);
+
+        QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Observer
+
+        if (out1.value(F_EVENT).toString() == "Line_break"){
+            cout<<"Empty_"<<endl;
+
+        }
+        else if (out1.value(F_EVENT).toString() == "json->Server"){
+            xP = "Sending-data-to-the-server...";
+            a= new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_ApplicationLog->append(a);
+            delete(a);
+        }
+        else if (out1.value(F_EVENT).toString() == "syntax error"){
+            xP = "_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
+            a= new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_ApplicationLog->append(a);
+            delete(a);
+        }
+        else if (out1.value(F_EVENT).toString() == "Interface"){
+            if (out1.value(F_NAME).toString()=="Stdout"){
+                xP = out1.value(F_VALUE).toString().toStdString();
+                a= new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_Stdout->append(a);
+                delete(a);
+
+            }else if(out1.value(F_NAME).toString()=="ApplicationLog"){
+                xP = "Error>> Line # "+out1.value(F_VALUE).toString().toStdString();
+                a= new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_ApplicationLog->append(a);
+                delete(a);
+            }
+        }
+        else{
+            xP = "Patron sin analisis....!! Line( "+to_string(ind)+" ).";
+            a= new char[xP.length() + 1];
+            strcpy(a,xP.c_str());
+            ui->ptd_ApplicationLog->append(a);
+            delete(a);
+        }
+        ind++;
+    }else{
+        xP = "\n>>> Finished Execution.\n\n";
+        a= new char[xP.length() + 1];
+        strcpy(a,xP.c_str());
+        ui->ptd_ApplicationLog->append(a);
+        delete(a);
+
+        ui->GoOn->setEnabled(0);
+        ui->Stop->setEnabled(0);
+    }
+}
+
+
+

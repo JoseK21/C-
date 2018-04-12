@@ -7,7 +7,8 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QDebug>
-#include "QThread"
+
+#include <ctime>
 
 #define F_EVENT "event"
 #define F_TYPE "type"
@@ -39,119 +40,106 @@ class Observer{
      * @param nL Numero actual de linea analizada
      */
     static QJsonObject writeLines(string line,int nL){
-        string x1 = line.substr(0,line.find(" "));
-        smatch m;
-        string R;
+
+        QFile file1("/home/josek/Escritorio/C-/array");
+        Q_ASSERT(file1.open(QFile::WriteOnly));
         QJsonObject json{{F_EVENT,""},{F_TYPE,""},{F_NAME,""},{F_VALUE,""},};
-        if (x1 =="int" || x1 =="long" || x1 =="char" || x1 =="float" || x1 =="double"){     //CAso de encontrar una Variable
 
-            regex patronV_1("([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");                    //Patron: int x;
-            bool found1 = regex_match(line,m,patronV_1);
-            if (found1==true){  //Asignacion de variable sin valor"
-               int n=1;
-               //QString data = to_string(x1); // assume this holds the json string
 
-               string name=m[3].str();
-               string eve="correct";
+/* <<<<<<<<<<<<<<<< Patrones de todas las verificaciones posibles realizadas >>>>>>>>>>>>>>>>>>>>> */
 
-               json.insert(F_EVENT,eve.c_str());
-               json.insert(F_TYPE,x1.c_str());
-               json.insert(F_NAME,name.c_str());
-               json.insert(F_VALUE,"null");
+//Patrones de struct & reference<tipo>______
+        smatch mS;
+        regex patronV_S("(struct)([[:s:]]*)[\{]");                                //struct{
+        bool foundV_S = regex_match(line,mS,patronV_S);
 
-               QJsonArray jsonArray {json};
-               QJsonDocument jsonDoc(jsonArray);
+        smatch mR;
+        regex patronV_R("(reference<)([[:s:]]*)([[:print:]]+)([[:s:]]*)[\>]");    //reference<...>;
+        bool foundV_R = regex_match(line,mR,patronV_R);
 
-               qDebug()<< jsonDoc.array()<<endl;
-               QFile file1("/home/josek/Escritorio/C-/array");
-               Q_ASSERT(file1.open(QFile::WriteOnly));
-               file1.write(jsonDoc.toJson());
+//Patrones de Variables_____
+        smatch m1;                                                                //Asignacion de variable SIN valor"
+        regex patronV_1("([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");              //int a; long b; char c; float d; double e;
+        bool foundV_1 = regex_match(line,m1,patronV_1);
 
-               qDebug()<<": "<< json.value(F_TYPE).toString()<<endl;
+        smatch m2;                                                                //Asignacion de variable CON valor"
+        regex patronV_2("([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");   //int a = 4;
+        bool foundV_2 = regex_match(line,m2,patronV_2);
 
-               return json;
-            }
-            else{
-                regex patronV_2("([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");
-                bool found2 = regex_match(line,m,patronV_2);
+//Patrones de cout<<_________
+        smatch m3;
+        regex patronC_1("cout<<\"([[:print:]]*)([[:s:]]*\";)");                   //cout<<"....";
+        bool foundC_1 = regex_match(line,m3,patronC_1);
 
-                if (found2==true){
-                   cout<<"\nAsignacion de variable con valor"<<endl;
-                   for(int n=1; n<m.size();n++){
-                       cout<<m[n]<<endl;
-                       R= R+m[n].str()+" ";
-                   }
-                   cout<<"COUT: "<<R<<endl;
-                   return json;
-                }
-                //Otro patron
-               cout<<"No encontrado :("<<endl;
-               return json;
-            }
+        smatch m4;
+        regex patronC_2("cout<<\"([[:print:]]*)([[:s:]]*\")");                    //cout<<"...."        (Sin ;)
+        bool foundC_2= regex_match(line,m4,patronC_2);
 
-            return json;
+/* <<<<<<<<<<<<<<<<<< <<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>> >>>>>>>>>>>>>>>>>>>>>>>> */
+
+        if (line.empty() || line==" "){
+            string eve="Line_break";
+            json.insert(F_EVENT,eve.c_str());
         }
-        else{
-            regex patronV_P("cout<<\"([[:print:]]*)([[:s:]]*\");");     //regex patronV_P("cout<<([[:w:]]*)([[:s:]]*);"); -> para variables
-            bool foundP3 = regex_match(line,m,patronV_P);
+        else if (foundV_1){
+           string name=m1[3].str();
+           string type=m1[1].str();
+           string eve="json->Server";
 
-            cout<<"printf(.........);"<<endl;
-            if (foundP3==true){
-
-               cout<<m[1].str()<<endl;
-               R= "p: "+m[1].str();
-               cout<<"COUT: "<<R<<endl;
-               return json;
-
-            }
-
-            regex patronV_P1("cout<<\"([[:print:]]*)([[:s:]]*\")");
-            bool foundP4= regex_match(line,m,patronV_P1);
-            cout<<"printf(....ERRORPunto_coma.....)"<<endl;
-
-            if(foundP4==true){//Error de ;
-               R= "e: "+to_string(nL+1);      //Error
-               cout<<"COUT: "<<R<<endl;
-               return json;
-
-                }
-            }
-
-            //Otro patron
-           cout<<"----> No encontrado :("<<endl;
-           return json;
-
-        /*
-
-
-        string R = "";
-
-        cout<<"First word: "<<x1<<endl;
-
-        smatch m;
-        regex e ("([[:w:]]+)[[:s:]]*([[:w:]])+\;");
-
-        bool found = regex_search(line,m,e);
-
-        if (found==true){
-           for(int n=0; n<m.size();n++){
-               R= R+m[n].str()+" ";
-           }
-           return R;
+           json.insert(F_EVENT,eve.c_str());
+           json.insert(F_TYPE,type.c_str());
+           json.insert(F_NAME,name.c_str());
+           json.insert(F_VALUE,"");
 
         }
-        else{
-           cout<<"No encontrado :("<<endl;
-           return R;
+        else if (foundV_2){
+            string eve="json->Server";
+            string type=m2[1].str();
+            string name=m2[3].str();
+            string value=m2[7].str();
+
+            json.insert(F_EVENT,eve.c_str());
+            json.insert(F_TYPE,type.c_str());
+            json.insert(F_NAME,name.c_str());
+            json.insert(F_VALUE,value.c_str());
+
         }
 
-        */
+       else if (foundC_1){
+           string eve="Interface";
+           string seccion="Stdout";
+           string value_Cout=m3[1].str();
 
-        cout<<"-------------FIN---------------"<<endl;
+           json.insert(F_EVENT,eve.c_str());
+           json.insert(F_NAME,seccion.c_str());
+           json.insert(F_VALUE,value_Cout.c_str());
+        }
+        else if (foundC_2){
+           string eve="Interface";
+           string seccion="ApplicationLog";
+           string nuLine = to_string(nL+1);
+
+           json.insert(F_EVENT,eve.c_str());
+           json.insert(F_NAME,seccion.c_str());
+           json.insert(F_VALUE,nuLine.c_str());
+
+       }
+       else{
+           string eve="syntax error";
+           string nuLine = to_string(nL+1);
+           json.insert(F_EVENT,eve.c_str());
+           json.insert(F_VALUE,nuLine.c_str());
+       }
+
+        QJsonArray jsonArray {json};
+        QJsonDocument jsonDoc(jsonArray);
+        file1.write(jsonDoc.toJson());
+        qDebug()<<"Json(LINE) :"<< jsonDoc.array()<<endl;
+        return json;
     }
 
 
-    /*____funciona muy bien para veririfacar que el valorer del integer sea un numero
+      /*____funciona muy bien para veririfacar que el valorer del integer sea un numero
        regex integer("(\\+|-)?[[:digit:]]+");
        if(regex_match(input,integer)){
             cout<<"integer"<<endl;
@@ -160,10 +148,4 @@ class Observer{
             cout<<"Invalid input"<<endl;
             return ">> Invalid input";
        }
-
-        */
-
-
-       //falta enviarlo a la intefaz
-       // TIPOS EXISTENTES : int long char float double struct reference<tipo>
-
+       */

@@ -47,7 +47,6 @@ private slots:
      *
      */
     void on_ButtonClear_clicked();
-
     /**
      * @brief inicializador un nuevo codigo
      *
@@ -60,8 +59,13 @@ private slots:
      */
     void on_Open_File_triggered();
 
-private:
-    Ui::Interface *ui; /**< TODO: describe */
-};
+    void on_Stop_clicked();
 
-#endif // INTERFACE_H
+    void on_GoOn_clicked();
+
+private:
+        Ui::Interface *ui; /**< TODO: describe */
+    };
+
+    #endif // INTERFACE_H
+
