@@ -1,7 +1,11 @@
 #include <QtWidgets>
 #include <QtNetwork>
-
+#include <iostream>
 #include "client.h"
+
+#include <interface.h>
+
+using namespace std;
 
 //! [0]
 Client::Client(QWidget *parent)
@@ -55,6 +59,9 @@ Client::Client(QWidget *parent)
     QDialogButtonBox *buttonBox = new QDialogButtonBox;
     buttonBox->addButton(getServerButton, QDialogButtonBox::ActionRole);
     buttonBox->addButton(quitButton, QDialogButtonBox::RejectRole);
+
+
+
 
 //! [1]
     in.setDevice(tcpSocket);
@@ -148,6 +155,8 @@ void Client::readFortune()
     QString nextFortune;
     in >> nextFortune;
 
+
+
     if (!in.commitTransaction())
         return;
 
@@ -155,10 +164,24 @@ void Client::readFortune()
         QTimer::singleShot(0, this, &Client::requestNewFortune);
         return;
     }
-
+    std::cout<<"-------------------> "<<nextFortune.toStdString()<<std::endl;
     currentFortune = nextFortune;
     statusLabel->setText(currentFortune);
     getServerButton->setEnabled(true);
+
+    std::cout<<nextFortune.toStdString()<<std::endl;
+    std::cout<<"Reservé 10MB"<<std::endl;
+
+    if(nextFortune.toStdString() == "Reservé 10MB"){
+        this->close();
+        Interface *i_f = new Interface;
+        //i_f->show();
+        //i_f->setModal(true);
+        i_f->show();
+
+        // talves el .exe
+    }
+
 }
 //! [8]
 
