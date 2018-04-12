@@ -20,6 +20,11 @@ char *a;
 int ind =0; // indice de linea analizada
 QStringList lines;
 
+enum colu{
+    Mem_Adr ,Val , Tag , Ref
+  //  0       1     2     3
+};
+
 /**
  * @brief Inicio de ventana
  *
@@ -86,13 +91,23 @@ void Interface::on_Run_clicked()
                 ui->ptd_ApplicationLog->append(a);
                 delete(a);
 
+ // AQUI ENVIAR Y RECIVIR JSON SERVER-CLIENTE--------------------------------------
+
                 //---- prueba de tabla
                 int fila = ui->tableWidget->rowCount();
                 ui->tableWidget->insertRow(ui->tableWidget->rowCount());
-                QString p = out1.value(F_EVENT).toString();
-                ui->tableWidget->setItem(fila,0,new QTableWidgetItem(p));
 
-                //-----
+                QString pV = out1.value(F_VALUE).toString();
+                QString pN = out1.value(F_NAME).toString();
+                QString pT = out1.value(F_TYPE).toString();
+
+                ui->tableWidget->setItem(fila,Val,new QTableWidgetItem(pV));
+                ui->tableWidget->setItem(fila,Tag,new QTableWidgetItem(pN));
+                ui->tableWidget->setItem(fila,Ref,new QTableWidgetItem(pT));
+
+                //Mem_Adr ,Val , Tag , Ref
+
+                //0        1     2     3
 
             }
             else if (out1.value(F_EVENT).toString() == "syntax error"){
