@@ -8,7 +8,7 @@
 #include <QFile>
 #include <QDebug>
 
-#include <ctime>
+#include <unistd.h>
 
 #define F_EVENT "event"
 #define F_TYPE "type"
@@ -30,7 +30,7 @@ class Observer{
          * @param string Linea leida
          * @param int Numero de linea leida
          */
-        static string writeLines(string,int);
+        static QJsonObject writeLines(string,int);
 
    };
     /**
@@ -59,11 +59,11 @@ class Observer{
 
 //Patrones de Variables_____
         smatch m1;                                                                //Asignacion de variable SIN valor"
-        regex patronV_1("([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");              //int a; long b; char c; float d; double e;
+        regex patronV_1("([[:s:]]*)([[:w:]]+)([[:s:]]+)([[:w:]]+)[[:s:]]*\;");              //int a; long b; char c; float d; double e;
         bool foundV_1 = regex_match(line,m1,patronV_1);
 
         smatch m2;                                                                //Asignacion de variable CON valor"
-        regex patronV_2("([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");   //int a = 4;
+        regex patronV_2("([[:s:]]*)([[:w:]]+)([[:s:]]+)([[:w:]]+)([[:s:]]*)(=)([[:s:]]*)([[:w:]]+)([[:s:]]*)\;");   //int a = 4;
         bool foundV_2 = regex_match(line,m2,patronV_2);
 
 //Patrones de cout<<_________
@@ -75,15 +75,23 @@ class Observer{
         regex patronC_2("cout<<\"([[:print:]]*)([[:s:]]*\")");                    //cout<<"...."        (Sin ;)
         bool foundC_2= regex_match(line,m4,patronC_2);
 
+
+
+//Patrones de cout<<_________
+        smatch mSpace;
+        regex patronSpace("[[:s:]]*");                    //cout<<"...."        (Sin ;)
+        bool foundSpace= regex_match(line,mSpace,patronSpace);
+
+
 /* <<<<<<<<<<<<<<<<<< <<<<<<<<<<<<<<<<<<<<<<<  >>>>>>>>>>>>>>>>>>>>>>>>> >>>>>>>>>>>>>>>>>>>>>>>> */
 
-        if (line.empty() || line==" "){
+        if (foundSpace){
             string eve="Line_break";
             json.insert(F_EVENT,eve.c_str());
         }
         else if (foundV_1){
-           string name=m1[3].str();
-           string type=m1[1].str();
+           string name=m1[4].str();
+           string type=m1[2].str();
            string eve="json->Server";
 
            json.insert(F_EVENT,eve.c_str());
@@ -134,7 +142,10 @@ class Observer{
         QJsonArray jsonArray {json};
         QJsonDocument jsonDoc(jsonArray);
         file1.write(jsonDoc.toJson());
+
         qDebug()<<"Json(LINE) :"<< jsonDoc.array()<<endl;
+
+
         return json;
     }
 

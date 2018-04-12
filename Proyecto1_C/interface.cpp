@@ -50,26 +50,19 @@ Interface::~Interface()
  */
 void Interface::on_Run_clicked()
 {
-    ui->GoOn->setEnabled(1);
-    ui->Stop->setEnabled(1);
+    ui->Run->setEnabled(0);
     xP = "Starting Compilation....";
     a = new char[xP.length() + 1];
     strcpy(a,xP.c_str());
     ui->ptd_ApplicationLog->append(a);
 
-    ind=0;
-    if (stop == true){
-        stop=false;
-    }
 
     QString plainTextEditContents = ui->ptd_CodeEdit->toPlainText();
     lines = plainTextEditContents.split("\n");
 
     int sizeLines = lines.length();
-    cout<<"Size Lines :"<<sizeLines<<endl;
 
     for(ind;ind<sizeLines;ind++){
-
 
         xP = to_string(ind+1);
         a = new char[xP.length() + 1];
@@ -77,68 +70,61 @@ void Interface::on_Run_clicked()
         ui->label_Analyzed_Line->setText(a);
         delete(a);
 
-        if(stop==true){
-            xP = "Stop....";
-            a= new char[xP.length() + 1];
-            strcpy(a,xP.c_str());
-            ui->ptd_ApplicationLog->append(a);
-            delete(a);
-
-            break;
-        }
-
         //TIMER
-        QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Observer
 
-        if (out1.value(F_EVENT).toString() == "Line_break"){
-            cout<<"Line_break"<<endl;
-        }
-        else if (out1.value(F_EVENT).toString() == "json->Server"){
-            xP = "Sending-data-to-the-server...";
-            a = new char[xP.length() + 1];
-            strcpy(a,xP.c_str());
-            ui->ptd_ApplicationLog->append(a);
-            delete(a);
-        }
-        else if (out1.value(F_EVENT).toString() == "syntax error"){
-            xP = "_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
-            a = new char[xP.length() + 1];
-            strcpy(a,xP.c_str());
-            ui->ptd_ApplicationLog->append(a);
-            delete(a);
-            break;//Finaliza la ejecucion
-        }
-        else if (out1.value(F_EVENT).toString() == "Interface"){
-            if (out1.value(F_NAME).toString()=="Stdout"){
-                xP = out1.value(F_VALUE).toString().toStdString();
-                a = new char[xP.length() + 1];
-                strcpy(a,xP.c_str());
-                ui->ptd_Stdout->append(a);
-                delete(a);
-            }else if(out1.value(F_NAME).toString()=="ApplicationLog"){
-                xP = "Error>> Line # "+out1.value(F_VALUE).toString().toStdString();
+            QJsonObject out1 = writeLines(lines[ind].toStdString(),ind);    //Observer
+
+            if (out1.value(F_EVENT).toString() == "Line_break"){
+                //Nada solo es para visualizar el salto de linea
+            }
+            else if (out1.value(F_EVENT).toString() == "json->Server"){
+                xP = "Sending-data-to-the-server...";
                 a = new char[xP.length() + 1];
                 strcpy(a,xP.c_str());
                 ui->ptd_ApplicationLog->append(a);
-
+                delete(a);
+            }
+            else if (out1.value(F_EVENT).toString() == "syntax error"){
+                xP = "\t\t_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
+                a = new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_ApplicationLog->append(a);
                 delete(a);
                 break;//Finaliza la ejecucion
             }
+            else if (out1.value(F_EVENT).toString() == "Interface"){
+                if (out1.value(F_NAME).toString()=="Stdout"){
+                    xP = out1.value(F_VALUE).toString().toStdString();
+                    a = new char[xP.length() + 1];
+                    strcpy(a,xP.c_str());
+                    ui->ptd_Stdout->append(a);
+                    delete(a);
+                }else if(out1.value(F_NAME).toString()=="ApplicationLog"){
+                    xP = "Error>> Line # "+out1.value(F_VALUE).toString().toStdString();
+                    a = new char[xP.length() + 1];
+                    strcpy(a,xP.c_str());
+                    ui->ptd_ApplicationLog->append(a);
+
+                    delete(a);
+                    break;          //Finaliza la ejecucion
+                }
+            }
+            else{
+                xP = "Patron sin analisis....!! Line( "+to_string(ind)+" ).";
+                a = new char[xP.length() + 1];
+                strcpy(a,xP.c_str());
+                ui->ptd_ApplicationLog->append(a);
+                delete(a);
+            }
         }
-        else{
-            xP = "Patron sin analisis....!! Line( "+to_string(ind)+" ).";
-            a = new char[xP.length() + 1];
-            strcpy(a,xP.c_str());
-            ui->ptd_ApplicationLog->append(a);
-            delete(a);
-        }
+        xP = "\n>>> Finished Execution.\n\n";
+        a = new char[xP.length() + 1];
+        strcpy(a,xP.c_str());
+        ui->ptd_ApplicationLog->append(a);
+        ui->Stop->setEnabled(0);
+        delete(a);
     }
-    xP = "\n>>> Finished Execution.\n\n";
-    a = new char[xP.length() + 1];
-    strcpy(a,xP.c_str());
-    ui->ptd_ApplicationLog->append(a);
-    delete(a);
-}
+//}
 
 /**
  * @brief Boton para borrar información del Apllication Log
@@ -155,6 +141,10 @@ void Interface::on_ButtonClear_clicked()
  */
 void Interface::on_NewFile_triggered()
 {
+    ui->Run->setEnabled(1);
+    ui->Stop->setEnabled(1);
+    ui->GoOn->setEnabled(0);
+
     ui->label_Analyzed_Line->setText("");
     ui->ptd_ApplicationLog->clear();
     ui->ptd_CodeEdit->clear();
@@ -171,7 +161,6 @@ void Interface::on_Open_File_triggered()
     ui->ptd_CodeEdit->clear();
 
     fname = QFileDialog::getOpenFileName(this);
-    cout<<"->->->->File Open: "<<fname.toStdString()<<endl;
     nameF = fname.toStdString();
     QFile file(fname);
     file.open(QFile::ReadOnly | QFile::Text);
@@ -198,8 +187,9 @@ void Interface::on_Stop_clicked()
     strcpy(a,xP.c_str());
     ui->ptd_ApplicationLog->append(a);
     delete(a);
-
+    ui->Run->setEnabled(0);
     ui->Stop->setEnabled(0);
+    ui->GoOn->setEnabled(1);
 
 }
 
@@ -225,8 +215,7 @@ void Interface::on_GoOn_clicked()
         QJsonObject out1 = writeLines(lines[ind].toStdString(),ind); //Observer
 
         if (out1.value(F_EVENT).toString() == "Line_break"){
-            cout<<"Empty_"<<endl;
-
+            // NAda solo visualiza que sea un salto de linea
         }
         else if (out1.value(F_EVENT).toString() == "json->Server"){
             xP = "Sending-data-to-the-server...";
@@ -236,7 +225,7 @@ void Interface::on_GoOn_clicked()
             delete(a);
         }
         else if (out1.value(F_EVENT).toString() == "syntax error"){
-            xP = "_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
+            xP = "\t\t_Syntax_Error_ >> Line # "+out1.value(F_VALUE).toString().toStdString();
             a= new char[xP.length() + 1];
             strcpy(a,xP.c_str());
             ui->ptd_ApplicationLog->append(a);

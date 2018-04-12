@@ -6,7 +6,7 @@
 #include "observer.cpp"
 #include "listasimple.cpp"
 
-
+using namespace std;
 
 namespace Ui {
 class Interface;

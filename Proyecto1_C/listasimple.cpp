@@ -104,18 +104,18 @@ public:
     string obtenerPorPosicion(int pos){
         string Ob;
         if(vacio()==true){
-            cout<<"Lista vacia"<<endl;
+            std::cout<<"Lista vacia"<<std::endl;
         }
         else {
 
             NodoS *aux=primero;
             for (int ind = 0; ind <= pos; ind++) {
                 if (ind == pos) {
-                    cout << "Valor de la posicion " << pos << " = " << aux->getDato() << endl;
+                    std::cout << "Valor de la posicion " << pos << " = " << aux->getDato() << std::endl;
                     break;
                 }else if (aux->siguiente == NULL) {
-                    cout << "La posición " << pos << " esta fuera del rango de la lista" << endl;
-                    cout << "Dato no agregado...!" << endl;
+                    std::cout << "La posición " << pos << " esta fuera del rango de la lista" << std::endl;
+                    std::cout << "Dato no agregado...!" << std::endl;
                     break;
                 }
                 aux = aux->siguiente;
