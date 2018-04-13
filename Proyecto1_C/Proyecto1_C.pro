@@ -18,13 +18,18 @@ SOURCES += main.cpp\
     observer.cpp \
     listasimple.cpp \
     nodos.cpp \
-    client.cpp
+
 
 HEADERS  += interface.h \
-    client.h
+    ../../cliente/Example Client/json.hpp \
+    ../../cliente/Example Client/RMLib.h \
+    ../../cliente/Example Client/RMnode.h \
+    ../../cliente/Example Client/tcp_client.h \
+    ../../cliente/Example Client/tcp_client.h
+
 
 FORMS    += interface.ui \
-    client.ui
+
 
 RESOURCES += \
     pics.qrc
