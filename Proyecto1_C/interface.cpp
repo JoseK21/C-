@@ -6,6 +6,8 @@
 #include <fstream>
 #include <QFile>
 #include <QTextStream>
+#include <sys/socket.h>
+#include <arpa/inet.h>
 
 QFile file_jSon("/home/josek/Escritorio/C-/Proyecto1_C/array.json");
 using namespace std;
@@ -14,6 +16,7 @@ using namespace std;
 QString fname; /**< TODO: describe */
 string nameF; /**< TODO: describe */
 string stdOut; /**< TODO: describe */
+int socketConnected;
 bool stop=false;
 string xP;
 char *a;
@@ -31,10 +34,13 @@ enum colu{
  * @param parent
  */
 Interface::Interface(QWidget *parent) :
+
     QMainWindow(parent),
     ui(new Ui::Interface)
 {
+
     ui->setupUi(this);
+
 }
 
 
@@ -49,13 +55,13 @@ Interface::~Interface()
 
 
 
+
 /**
  * @brief Boton para ejecutar codigo
  *
  */
 void Interface::on_Run_clicked()
 {
-    //ui->Run->setEnabled(0);
     xP = "Starting Compilation....";
     a = new char[xP.length() + 1];
     strcpy(a,xP.c_str());
@@ -295,3 +301,19 @@ void Interface::on_GoOn_clicked()
 
 
 
+
+void Interface::on_pushButton_clicked()
+{
+    cout << "Hello enviado" << endl;
+    send(socketConnected,"Hello",sizeof(char)*5,0);
+}
+
+void Interface::on_radioButton_clicked()
+{
+    struct sockaddr_in direccionDePedido;
+    direccionDePedido.sin_family = AF_INET;
+    direccionDePedido.sin_addr.s_addr = inet_addr("172.19.48.217");
+    direccionDePedido.sin_port = htons(8888);
+    socketConnected = socket(AF_INET,SOCK_STREAM,0);
+    connect(socketConnected,(sockaddr*)&direccionDePedido,sizeof(direccionDePedido));
+}

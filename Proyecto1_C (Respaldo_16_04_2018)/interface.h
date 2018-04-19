@@ -5,7 +5,6 @@
 
 #include "observer.cpp"
 #include "listasimple.cpp"
-#include ""
 
 using namespace std;
 
@@ -24,6 +23,8 @@ class Interface : public QMainWindow
     Q_OBJECT
 
 public:
+
+
     /**
      * @brief Interfaz
      *
@@ -63,6 +64,8 @@ private slots:
     void on_Stop_clicked();
 
     void on_GoOn_clicked();
+
+
 
 private:
         Ui::Interface *ui; /**< TODO: describe */

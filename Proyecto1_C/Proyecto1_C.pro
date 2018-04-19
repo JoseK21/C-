@@ -20,12 +20,7 @@ SOURCES += main.cpp\
     nodos.cpp \
 
 
-HEADERS  += interface.h \
-    ../../cliente/Example Client/json.hpp \
-    ../../cliente/Example Client/RMLib.h \
-    ../../cliente/Example Client/RMnode.h \
-    ../../cliente/Example Client/tcp_client.h \
-    ../../cliente/Example Client/tcp_client.h
+HEADERS  += interface.h
 
 
 FORMS    += interface.ui \

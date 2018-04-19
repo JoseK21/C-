@@ -23,6 +23,8 @@ class Interface : public QMainWindow
     Q_OBJECT
 
 public:
+
+
     /**
      * @brief Interfaz
      *
@@ -62,6 +64,12 @@ private slots:
     void on_Stop_clicked();
 
     void on_GoOn_clicked();
+
+
+
+    void on_pushButton_clicked();
+
+    void on_radioButton_clicked();
 
 private:
         Ui::Interface *ui; /**< TODO: describe */
