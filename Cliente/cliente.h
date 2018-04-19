@@ -25,6 +25,20 @@ public slots:
 private slots:
     void on_Escribiralservidor_clicked();
 
+    void on_actionExit_triggered();
+
+    void on_actionNew_File_triggered();
+
+    void on_actionOpen_File_triggered();
+
+    void on_run_clicked();
+
+    void on_stop_clicked();
+
+    void on_go_on_clicked();
+
+    void on_clear_clicked();
+
 private:
     Ui::Cliente *ui;
     QTcpSocket *tcpcliente;
