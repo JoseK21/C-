@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/imagen_interface">
+        <file>trash.jpeg</file>
+        <file>step.jpeg</file>
+        <file>st.png</file>
+        <file>run.png</file>
+        <file>r.jpeg</file>
+        <file>open_file.png</file>
+        <file>new-file.png</file>
+        <file>images.png</file>
+        <file>Clogo.png</file>
+    </qresource>
+</RCC>
