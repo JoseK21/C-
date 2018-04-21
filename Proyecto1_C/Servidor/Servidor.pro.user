@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD:Proyecto1_C/Servidor/Servidor.pro.user
 <!-- Written by QtCreator 4.0.2, 2018-04-20T19:12:06. -->
+=======
+<!-- Written by QtCreator 4.0.2, 2018-04-18T19:13:22. -->
+>>>>>>> master:Servidor/Servidor.pro.user
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -303,8 +307,13 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">Servidor</value>
+<<<<<<< HEAD:Proyecto1_C/Servidor/Servidor.pro.user
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">Servidor2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/josek/Escritorio/C!/Servidor/Servidor.pro</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:/home/josek/Qt5.7.0/Projects/Servidor/Servidor.pro</value>
+>>>>>>> master:Servidor/Servidor.pro.user
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">Servidor.pro</value>

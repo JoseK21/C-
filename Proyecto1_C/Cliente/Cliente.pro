@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         cliente.cpp \
+<<<<<<< HEAD:Proyecto1_C/Cliente/Cliente.pro
     observer.cpp \
     node_rr.cpp \
     ram_remoto.cpp
+=======
+    observer.cpp
+>>>>>>> master:Cliente/Cliente.pro
 
 HEADERS  += cliente.h
 
