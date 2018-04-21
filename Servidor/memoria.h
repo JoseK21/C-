@@ -63,7 +63,7 @@ public:
      *
      * @param v
      */
-    void filtro(string v);
+    int* filtro(string v);
     /**
      * @brief Método para eliminar la referencia de enteros
      *

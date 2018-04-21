@@ -18,24 +18,24 @@ memoria::memoria()
  *
  * @param v
  */
-void memoria::filtro(string v) {
+int* memoria::filtro(string v) {
     if (v=="int"){
-        refInt();
+        return refInt();
     }
     if(v=="long"){
-        refLong();
+        return refLong();
     }
     if(v=="char"){
-        refChar();
+        return refChar();
     }
     if(v=="float"){
-        refFloat();
+       return refFloat();
     }
     if(v=="double"){
-        refDouble();
+       return refDouble();
     }
     if(v=="ref"){
-        refRef();
+        return refRef();
     }
     else{
         cout << "tipo desconocido" << endl;

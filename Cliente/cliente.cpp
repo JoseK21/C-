@@ -93,7 +93,6 @@ void Cliente::leer_socketservidor()     //lector de los datos provenientes del s
         ui->tableWidget->setItem(fila,Mem_Adr,new QTableWidgetItem(pM));
         ui->tableWidget->setItem(fila,Ref,new QTableWidgetItem(ref_c));
 
-
         ram_remoto->ingresarAlFinal(pM.toStdString(),pN.toStdString(),pV.toStdString(),pT.toStdString());
         cout<<ram_remoto->mostrarLista()<<endl;
     }

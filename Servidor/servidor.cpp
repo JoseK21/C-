@@ -72,24 +72,19 @@ void servidor::leer_socketcliente() {       //Recibe los datos del cliente
         QJsonDocument doc = QJsonDocument::fromJson(dataInto.toUtf8());
         QJsonObject jsonObject = doc.object();
 
-        QJsonValue nameJson = jsonObject.value("name");
-        jsonObject.insert("adress_memory","----");
-        QJsonValue nameJson212 = jsonObject.value("adress_memory");
 
+         int value = *data->filtro("int");
 
+         qDebug() << "Yes "<< QString::number(value);
+
+        jsonObject.insert("adress_memory", QString::number(value));
         QJsonDocument docX(jsonObject);
         const QString strJson(docX.toJson(QJsonDocument::Compact));
 
 
         on_client1_clicked(strJson);
 
-         //cout<<  data->filtro("int")<<endl;
 
-
-//        QString qtStrData;
-       // qtStrData = QString::fromUtf8();
-
-      //  qDebug() << " =====>  " << qtStrData ;
 
     }
     else{
