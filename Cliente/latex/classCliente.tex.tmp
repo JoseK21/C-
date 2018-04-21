@@ -1,0 +1,49 @@
+\hypertarget{classCliente}{}\section{Cliente Class Reference}
+\label{classCliente}\index{Cliente@{Cliente}}
+
+
+Inheritance diagram for Cliente\+:
+% FIG 0
+
+
+Collaboration diagram for Cliente\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classCliente_a1951475e3b30203e04adf1d837822aaa}{leer\+\_\+socketservidor} ()\hypertarget{classCliente_a1951475e3b30203e04adf1d837822aaa}{}\label{classCliente_a1951475e3b30203e04adf1d837822aaa}
+
+\begin{DoxyCompactList}\small\item\em Metodó para leer lo que el servidor reenvio. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classCliente_a933c611694e9de3bdd0bb67ba4da9cf3}{Cliente} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Clase \hyperlink{classCliente}{Cliente} \+: Usuario \+: \hyperlink{classCliente}{Cliente} del sistema. \end{DoxyCompactList}\item 
+\hyperlink{classCliente_a29d1d53394350c66363109e33c990b58}{$\sim$\+Cliente} ()\hypertarget{classCliente_a29d1d53394350c66363109e33c990b58}{}\label{classCliente_a29d1d53394350c66363109e33c990b58}
+
+\begin{DoxyCompactList}\small\item\em Liberador de memoria de la creacion de la ventana. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{Cliente@{Cliente}!Cliente@{Cliente}}
+\index{Cliente@{Cliente}!Cliente@{Cliente}}
+\subsubsection[{\texorpdfstring{Cliente(\+Q\+Widget $\ast$parent=0)}{Cliente(QWidget *parent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}Cliente\+::\+Cliente (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classCliente_a933c611694e9de3bdd0bb67ba4da9cf3}{}\label{classCliente_a933c611694e9de3bdd0bb67ba4da9cf3}
+
+
+Clase \hyperlink{classCliente}{Cliente} \+: Usuario \+: \hyperlink{classCliente}{Cliente} del sistema. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+cliente.\+h\item 
+cliente.\+cpp\end{DoxyCompactItemize}
