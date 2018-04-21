@@ -1,0 +1,334 @@
+\hypertarget{classmemoria}{}\section{memoria Class Reference}
+\label{classmemoria}\index{memoria@{memoria}}
+
+
+Clase Memoria.  
+
+
+
+
+{\ttfamily \#include $<$memoria.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoria_adaca81db3f9a5adb4307792e353e4c11}{memoria} ()
+\begin{DoxyCompactList}\small\item\em Constructurar de memoria. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a5a157c4a135a50d361d536a732bc48ef}{ref\+Int} ()
+\begin{DoxyCompactList}\small\item\em Método de referencias de enteros (4\+Bytes) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a5d37a73a8c7e09a41f5bbd6201ddd903}{ref\+Long} ()
+\begin{DoxyCompactList}\small\item\em Método para reservar los bytes correspondientes a un long. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a7ef0313c2061395714ac46a7c0481fd6}{ref\+Char} ()
+\begin{DoxyCompactList}\small\item\em Método de referencias de caracter (1\+Bytes) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a86e29cab7b3c10ea03438114e5ff05a4}{ref\+Float} ()
+\begin{DoxyCompactList}\small\item\em Método de referencias de float (4\+Bytes) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a5cacadfe9011d8c762a94f0688ee9589}{ref\+Double} ()
+\begin{DoxyCompactList}\small\item\em Método de referencias de double (4\+Bytes) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a871dcd6dc6797e2eb21f3d61cf004834}{ref\+Ref} ()
+\begin{DoxyCompactList}\small\item\em Método de referencias de referencia (4\+Bytes) \end{DoxyCompactList}\item 
+void \hyperlink{classmemoria_a292204ed5deabb29ae7a1df754ed4a3d}{filtro} (string v)
+\begin{DoxyCompactList}\small\item\em Método para dividir el trabajo de asignacion de memoria (4\+Bytes) \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a4e32adde1fd3538696c665eee1d2fce0}{del\+Int} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de enteros. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_ab502a98e209de50f8ab945c8e3bb05ed}{del\+Long} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de long. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_ab5e5ae2869630f9749a273c1c2870ca9}{del\+Char} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de caracter. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a7686101836edd84ca1c0781034eaf5d1}{del\+Float} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de float. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a5b2d31463100abb7dfc9ec175ff16c2a}{del\+Double} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de double. \end{DoxyCompactList}\item 
+int $\ast$ \hyperlink{classmemoria_a80b841f7b267b3c0a009c75ecd2da0b2}{del\+Ref} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la referencia de referencia. \end{DoxyCompactList}\item 
+void \hyperlink{classmemoria_ab96a56f5cd6dcfc92f0735a647ed7baa}{eraser} (string v)
+\begin{DoxyCompactList}\small\item\em Método para eliminar total. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ {\bfseries total} = (char $\ast$) malloc(10024 $\ast$ sizeof(int))\hypertarget{classmemoria_a2491cd7e8a56c92498a80c6c8d96fdf7}{}\label{classmemoria_a2491cd7e8a56c92498a80c6c8d96fdf7}
+
+\item 
+int \hyperlink{classmemoria_ae70753ee81418cd074bac2e6b913e087}{param} \mbox{[}6\mbox{]} = \{4, 8, 1, 4, 8, 4\}
+\item 
+int \hyperlink{classmemoria_aeec57d620ffeebd94a36e08719259f88}{ref} = 0
+\item 
+int $\ast$ \hyperlink{classmemoria_a5884e97e572cba7209ec529bdd4957ad}{ptr}
+\item 
+int \hyperlink{classmemoria_a32399e443be444698f22a50f4747f0e9}{totalm} = 10024
+\item 
+int $\ast$ \hyperlink{classmemoria_a6b371e842705c66e92408cdb87f58d4d}{current}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Clase Memoria. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{memoria@{memoria}!memoria@{memoria}}
+\index{memoria@{memoria}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{memoria()}{memoria()}}]{\setlength{\rightskip}{0pt plus 5cm}memoria\+::memoria (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_adaca81db3f9a5adb4307792e353e4c11}{}\label{classmemoria_adaca81db3f9a5adb4307792e353e4c11}
+
+
+Constructurar de memoria. 
+
+Constructor de memoria. 
+
+\subsection{Member Function Documentation}
+\index{memoria@{memoria}!del\+Char@{del\+Char}}
+\index{del\+Char@{del\+Char}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Char()}{delChar()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_ab5e5ae2869630f9749a273c1c2870ca9}{}\label{classmemoria_ab5e5ae2869630f9749a273c1c2870ca9}
+
+
+Método para eliminar la referencia de caracter. 
+
+Método para borrar los bytes correspondientes a un char.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!del\+Double@{del\+Double}}
+\index{del\+Double@{del\+Double}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Double()}{delDouble()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Double (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a5b2d31463100abb7dfc9ec175ff16c2a}{}\label{classmemoria_a5b2d31463100abb7dfc9ec175ff16c2a}
+
+
+Método para eliminar la referencia de double. 
+
+Método para borrar los bytes correspondientes a un double.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!del\+Float@{del\+Float}}
+\index{del\+Float@{del\+Float}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Float()}{delFloat()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Float (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a7686101836edd84ca1c0781034eaf5d1}{}\label{classmemoria_a7686101836edd84ca1c0781034eaf5d1}
+
+
+Método para eliminar la referencia de float. 
+
+Método para borrar los bytes correspondientes a un float.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!del\+Int@{del\+Int}}
+\index{del\+Int@{del\+Int}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Int()}{delInt()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a4e32adde1fd3538696c665eee1d2fce0}{}\label{classmemoria_a4e32adde1fd3538696c665eee1d2fce0}
+
+
+Método para eliminar la referencia de enteros. 
+
+Método para borrar los bytes correspondientes a un int.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!del\+Long@{del\+Long}}
+\index{del\+Long@{del\+Long}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Long()}{delLong()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_ab502a98e209de50f8ab945c8e3bb05ed}{}\label{classmemoria_ab502a98e209de50f8ab945c8e3bb05ed}
+
+
+Método para eliminar la referencia de long. 
+
+Método para borrar los bytes correspondientes a un long.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!del\+Ref@{del\+Ref}}
+\index{del\+Ref@{del\+Ref}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{del\+Ref()}{delRef()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::del\+Ref (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a80b841f7b267b3c0a009c75ecd2da0b2}{}\label{classmemoria_a80b841f7b267b3c0a009c75ecd2da0b2}
+
+
+Método para eliminar la referencia de referencia. 
+
+Método para borrar los bytes correspondientes a una referencia.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!eraser@{eraser}}
+\index{eraser@{eraser}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{eraser(string v)}{eraser(string v)}}]{\setlength{\rightskip}{0pt plus 5cm}void memoria\+::eraser (
+\begin{DoxyParamCaption}
+\item[{string}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_ab96a56f5cd6dcfc92f0735a647ed7baa}{}\label{classmemoria_ab96a56f5cd6dcfc92f0735a647ed7baa}
+
+
+Método para eliminar total. 
+
+Método para borrar los bytes de las referencia.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\index{memoria@{memoria}!filtro@{filtro}}
+\index{filtro@{filtro}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{filtro(string v)}{filtro(string v)}}]{\setlength{\rightskip}{0pt plus 5cm}void memoria\+::filtro (
+\begin{DoxyParamCaption}
+\item[{string}]{v}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a292204ed5deabb29ae7a1df754ed4a3d}{}\label{classmemoria_a292204ed5deabb29ae7a1df754ed4a3d}
+
+
+Método para dividir el trabajo de asignacion de memoria (4\+Bytes) 
+
+Método para filtrar los datos.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & \\
+\hline
+\end{DoxyParams}
+\index{memoria@{memoria}!ref\+Char@{ref\+Char}}
+\index{ref\+Char@{ref\+Char}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Char()}{refChar()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Char (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a7ef0313c2061395714ac46a7c0481fd6}{}\label{classmemoria_a7ef0313c2061395714ac46a7c0481fd6}
+
+
+Método de referencias de caracter (1\+Bytes) 
+
+Método para reservar los bytes correspondientes a un char.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!ref\+Double@{ref\+Double}}
+\index{ref\+Double@{ref\+Double}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Double()}{refDouble()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Double (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a5cacadfe9011d8c762a94f0688ee9589}{}\label{classmemoria_a5cacadfe9011d8c762a94f0688ee9589}
+
+
+Método de referencias de double (4\+Bytes) 
+
+Método para reservar los bytes correspondientes a un double.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!ref\+Float@{ref\+Float}}
+\index{ref\+Float@{ref\+Float}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Float()}{refFloat()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Float (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a86e29cab7b3c10ea03438114e5ff05a4}{}\label{classmemoria_a86e29cab7b3c10ea03438114e5ff05a4}
+
+
+Método de referencias de float (4\+Bytes) 
+
+Método para reservar los bytes correspondientes a un float.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!ref\+Int@{ref\+Int}}
+\index{ref\+Int@{ref\+Int}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Int()}{refInt()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Int (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a5a157c4a135a50d361d536a732bc48ef}{}\label{classmemoria_a5a157c4a135a50d361d536a732bc48ef}
+
+
+Método de referencias de enteros (4\+Bytes) 
+
+Método para reservar los bytes correspondientes a un int.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!ref\+Long@{ref\+Long}}
+\index{ref\+Long@{ref\+Long}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Long()}{refLong()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Long (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a5d37a73a8c7e09a41f5bbd6201ddd903}{}\label{classmemoria_a5d37a73a8c7e09a41f5bbd6201ddd903}
+
+
+Método para reservar los bytes correspondientes a un long. 
+
+étodo de referencias de long (8\+Bytes)
+
+\begin{DoxyReturn}{Returns}
+int
+
+int 
+\end{DoxyReturn}
+\index{memoria@{memoria}!ref\+Ref@{ref\+Ref}}
+\index{ref\+Ref@{ref\+Ref}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref\+Ref()}{refRef()}}]{\setlength{\rightskip}{0pt plus 5cm}int $\ast$ memoria\+::ref\+Ref (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classmemoria_a871dcd6dc6797e2eb21f3d61cf004834}{}\label{classmemoria_a871dcd6dc6797e2eb21f3d61cf004834}
+
+
+Método de referencias de referencia (4\+Bytes) 
+
+Método para reservar los bytes correspondientes a un referencia.
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\index{memoria@{memoria}!current@{current}}
+\index{current@{current}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{current}{current}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ memoria\+::current}\hypertarget{classmemoria_a6b371e842705c66e92408cdb87f58d4d}{}\label{classmemoria_a6b371e842705c66e92408cdb87f58d4d}
+Variable de control para mantener el flujo de los punteros \index{memoria@{memoria}!param@{param}}
+\index{param@{param}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{param}{param}}]{\setlength{\rightskip}{0pt plus 5cm}int memoria\+::param\mbox{[}6\mbox{]} = \{4, 8, 1, 4, 8, 4\}}\hypertarget{classmemoria_ae70753ee81418cd074bac2e6b913e087}{}\label{classmemoria_ae70753ee81418cd074bac2e6b913e087}
+Memoria local Parametro de bites de cada tipo de dato \index{memoria@{memoria}!ptr@{ptr}}
+\index{ptr@{ptr}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ptr}{ptr}}]{\setlength{\rightskip}{0pt plus 5cm}int$\ast$ memoria\+::ptr}\hypertarget{classmemoria_a5884e97e572cba7209ec529bdd4957ad}{}\label{classmemoria_a5884e97e572cba7209ec529bdd4957ad}
+puntero null que va a apuntar a regiiones moviles de memoria \index{memoria@{memoria}!ref@{ref}}
+\index{ref@{ref}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{ref}{ref}}]{\setlength{\rightskip}{0pt plus 5cm}int memoria\+::ref = 0}\hypertarget{classmemoria_aeec57d620ffeebd94a36e08719259f88}{}\label{classmemoria_aeec57d620ffeebd94a36e08719259f88}
+Valor de referecnia para operar sobre los valores de memoria \index{memoria@{memoria}!totalm@{totalm}}
+\index{totalm@{totalm}!memoria@{memoria}}
+\subsubsection[{\texorpdfstring{totalm}{totalm}}]{\setlength{\rightskip}{0pt plus 5cm}int memoria\+::totalm = 10024}\hypertarget{classmemoria_a32399e443be444698f22a50f4747f0e9}{}\label{classmemoria_a32399e443be444698f22a50f4747f0e9}
+Variable de control 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+memoria.\+h\item 
+memoria.\+cpp\end{DoxyCompactItemize}

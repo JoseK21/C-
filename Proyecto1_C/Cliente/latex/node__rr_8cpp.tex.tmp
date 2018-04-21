@@ -1,0 +1,29 @@
+\hypertarget{node__rr_8cpp}{}\section{node\+\_\+rr.\+cpp File Reference}
+\label{node__rr_8cpp}\index{node\+\_\+rr.\+cpp@{node\+\_\+rr.\+cpp}}
+
+
+Nodo de tipo simple.  
+
+
+{\ttfamily \#include \char`\"{}iostream\char`\"{}}\\*
+Include dependency graph for node\+\_\+rr.\+cpp\+:
+% FIG 0
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classNode__Rr}{Node\+\_\+\+Rr}
+\begin{DoxyCompactList}\small\item\em Clase \hyperlink{classNode__Rr}{Node\+\_\+\+Rr} Molde de un nodo simple, el cual es empleado por la lista simple. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Nodo de tipo simple. 
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+10/03/2018 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+José Núñez  Tarea Extraclase \#1 
+\end{DoxyAuthor}

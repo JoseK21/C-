@@ -1,0 +1,110 @@
+\hypertarget{classservidor}{}\section{servidor Class Reference}
+\label{classservidor}\index{servidor@{servidor}}
+
+
+Constructor de interface del servidor.  
+
+
+
+
+{\ttfamily \#include $<$servidor.\+h$>$}
+
+
+
+Inheritance diagram for servidor\+:
+% FIG 0
+
+
+Collaboration diagram for servidor\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classservidor_a8829b58f77fdeef89dc363b9a994263a}{conexion\+\_\+nueva} ()
+\begin{DoxyCompactList}\small\item\em Método para establecer la comunicación con el cliente. \end{DoxyCompactList}\item 
+void \hyperlink{classservidor_adc230876814773855404901179a0a2db}{leer\+\_\+socketcliente} ()
+\begin{DoxyCompactList}\small\item\em Método para leer los datos enviado por el cliente. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classservidor_abc25c8bb27bc1ce72c6c87a4c642ef33}{servidor} (Q\+Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Comunicador de la creacion de la interface. \end{DoxyCompactList}\item 
+\hyperlink{classservidor_a3f0624ec7584e80d497eba47f0b12390}{$\sim$servidor} ()
+\begin{DoxyCompactList}\small\item\em Método para eliminar la creacion de la interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classmemoria}{memoria} $\ast$ \hyperlink{classservidor_ad16d8b40aaf8a5aff23725c2102665c6}{data} = new \hyperlink{classmemoria}{memoria}()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Constructor de interface del servidor. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{servidor@{servidor}!servidor@{servidor}}
+\index{servidor@{servidor}!servidor@{servidor}}
+\subsubsection[{\texorpdfstring{servidor(\+Q\+Widget $\ast$parent=0)}{servidor(QWidget *parent=0)}}]{\setlength{\rightskip}{0pt plus 5cm}servidor\+::servidor (
+\begin{DoxyParamCaption}
+\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}\hypertarget{classservidor_abc25c8bb27bc1ce72c6c87a4c642ef33}{}\label{classservidor_abc25c8bb27bc1ce72c6c87a4c642ef33}
+
+
+Comunicador de la creacion de la interface. 
+
+Método crear la ventana del servidor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & \\
+\hline
+\end{DoxyParams}
+\index{servidor@{servidor}!````~servidor@{$\sim$servidor}}
+\index{````~servidor@{$\sim$servidor}!servidor@{servidor}}
+\subsubsection[{\texorpdfstring{$\sim$servidor()}{~servidor()}}]{\setlength{\rightskip}{0pt plus 5cm}servidor\+::$\sim$servidor (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classservidor_a3f0624ec7584e80d497eba47f0b12390}{}\label{classservidor_a3f0624ec7584e80d497eba47f0b12390}
+
+
+Método para eliminar la creacion de la interface. 
+
+Método para borrar la llamada de la creación de la ventana. 
+
+\subsection{Member Function Documentation}
+\index{servidor@{servidor}!conexion\+\_\+nueva@{conexion\+\_\+nueva}}
+\index{conexion\+\_\+nueva@{conexion\+\_\+nueva}!servidor@{servidor}}
+\subsubsection[{\texorpdfstring{conexion\+\_\+nueva}{conexion_nueva}}]{\setlength{\rightskip}{0pt plus 5cm}void servidor\+::conexion\+\_\+nueva (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classservidor_a8829b58f77fdeef89dc363b9a994263a}{}\label{classservidor_a8829b58f77fdeef89dc363b9a994263a}
+
+
+Método para establecer la comunicación con el cliente. 
+
+Método para crear una nueva conexión. \index{servidor@{servidor}!leer\+\_\+socketcliente@{leer\+\_\+socketcliente}}
+\index{leer\+\_\+socketcliente@{leer\+\_\+socketcliente}!servidor@{servidor}}
+\subsubsection[{\texorpdfstring{leer\+\_\+socketcliente}{leer_socketcliente}}]{\setlength{\rightskip}{0pt plus 5cm}void servidor\+::leer\+\_\+socketcliente (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}\hypertarget{classservidor_adc230876814773855404901179a0a2db}{}\label{classservidor_adc230876814773855404901179a0a2db}
+
+
+Método para leer los datos enviado por el cliente. 
+
+Método para leer los msj del cliente. 
+
+\subsection{Member Data Documentation}
+\index{servidor@{servidor}!data@{data}}
+\index{data@{data}!servidor@{servidor}}
+\subsubsection[{\texorpdfstring{data}{data}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf memoria}$\ast$ servidor\+::data = new {\bf memoria}()}\hypertarget{classservidor_ad16d8b40aaf8a5aff23725c2102665c6}{}\label{classservidor_ad16d8b40aaf8a5aff23725c2102665c6}
+Variable de manajador de memoria 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+servidor.\+h\item 
+servidor.\+cpp\end{DoxyCompactItemize}
